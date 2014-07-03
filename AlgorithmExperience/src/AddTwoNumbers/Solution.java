@@ -9,8 +9,6 @@ public class Solution {
 	}
 
 	private void run() {
-		int[] numbers = { 3, 2, 4 };
-		int target = 6;
 
 	}
 
@@ -44,16 +42,16 @@ public class Solution {
 		} else {
 			retNode = tempL2;
 		}
-		
-		while(retNode != null){
+
+		while (retNode != null) {
 			int value = retNode.val;
-			if(addOne){
-				value ++;
+			if (addOne) {
+				value++;
 			}
-			if(value >= 10){
-				value -=10;
+			if (value >= 10) {
+				value -= 10;
 				addOne = true;
-			}else{
+			} else {
 				addOne = false;
 			}
 			ListNode curNode = new ListNode(value);
@@ -61,7 +59,7 @@ public class Solution {
 			retLTail = curNode;
 			retNode = retNode.next;
 		}
-		
+
 		if (addOne) {
 			ListNode curNode = new ListNode(1);
 			retLTail.next = curNode;

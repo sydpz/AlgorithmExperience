@@ -1,7 +1,6 @@
 package Permute;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Solution {
@@ -12,9 +11,9 @@ public class Solution {
 	}
 
 	private void run() {
-		int[] numbers = { 0,1};
+		int[] numbers = { 0, 1 };
 		permute(numbers);
-		
+
 	}
 
 	public List<List<Integer>> permute(int[] num) {
