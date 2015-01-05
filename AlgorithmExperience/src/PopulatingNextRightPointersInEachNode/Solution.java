@@ -1,43 +1,38 @@
 package PopulatingNextRightPointersInEachNode;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import DataStructure.TreeLinkNode;
 
 public class Solution {
-	public void connect(TreeLinkNode root) {
+	public  void connect(TreeLinkNode root) {
 		if (root == null) {
 			return;
 		}
-		LinkedList<TreeLinkNode> inputQueue = new LinkedList<TreeLinkNode>();
-		LinkedList<TreeLinkNode> outputQueue = new LinkedList<TreeLinkNode>();
+		ArrayList<TreeLinkNode> inputQueue = new ArrayList<TreeLinkNode>();
+		ArrayList<TreeLinkNode> outputQueue = new ArrayList<TreeLinkNode>();
 		inputQueue.add(root);
-		while (!inputQueue.isEmpty() && !outputQueue.isEmpty()) {
-			if (inputQueue.isEmpty()) {
-				LinkedList<TreeLinkNode> tmpQueue = inputQueue;
-				inputQueue = outputQueue;
-				outputQueue = tmpQueue;
-			}
-			TreeLinkNode tmpNode = inputQueue.remove();
-			if (tmpNode.left != null) {
-				outputQueue.add(tmpNode.left);
-			}
-			if (tmpNode.right != null) {
-				outputQueue.add(tmpNode.right);
-			}
-			while (!inputQueue.isEmpty()) {
-				TreeLinkNode tmpNode2 = inputQueue.remove();
-				if (tmpNode2.left != null) {
-					outputQueue.add(tmpNode2.left);
+		while (!inputQueue.isEmpty()) {
+			for (int i = 0; i < inputQueue.size(); i++) {
+				TreeLinkNode tmpNode = inputQueue.get(i);
+				if (i == inputQueue.size() - 1) {
+					tmpNode.next = null;
+				} else {
+					tmpNode.next = inputQueue.get(i + 1);
 				}
-				if (tmpNode2.right != null) {
-					outputQueue.add(tmpNode2.right);
+				if (tmpNode.left != null) {
+					outputQueue.add(tmpNode.left);
 				}
-				tmpNode.next = tmpNode2;
-				tmpNode = tmpNode2;
+				if (tmpNode.right != null) {
+					outputQueue.add(tmpNode.right);
+				}
 			}
-			tmpNode.next = null;
+			inputQueue.clear();
+			ArrayList<TreeLinkNode> tmpQueue = outputQueue;
+			outputQueue = inputQueue;
+			inputQueue = tmpQueue;
 		}
 	}
 }
